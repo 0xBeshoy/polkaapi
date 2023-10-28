@@ -1,0 +1,17 @@
+{
+    "name": "polkaapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/index.js",
+    "type": "module",
+    "scripts": {
+        "run": "node src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@polkadot/api": "^10.10.1",
+        "@polkadot/types": "^10.10.1"
+    }
+}
