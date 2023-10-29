@@ -7,7 +7,6 @@ import { config } from "dotenv";
 // System configuration step
 config();
 const mnemonic = process.env.MNEMONIC;
-await cryptoIsReady();
 
 // Connection setup
 const setup = async () => {
@@ -16,7 +15,7 @@ const setup = async () => {
     return api;
 };
 
-//Testing the connection
+// Testing the connection
 async function testConnection() {
     setup()
         .then(async (api) => {
@@ -48,12 +47,17 @@ const keyPairs = async () => {
 
 // Sign a message
 const signMessage = async () => {
-    await setup();
     const signer = await keyPairs();
+    console.log({ signer });
     const message = stringToU8a("Hello, world!");
-    const signature = await signer.sign(message);
-    const { isValid } = signatureVerify(message, signature, ep.address);
+    const signature = await signer.ep.sign(message); // Access the 'sign' function on 'signer.ep'
+    const { isValid } = signatureVerify(message, signature, signer.ep.address);
     console.log(u8aToHex(signature), isValid);
 };
 
-signMessage();
+signMessage()
+    .then(() => console.log("Done"))
+    .catch((err) => {
+        console.error(err);
+    })
+    .finally(() => process.exit());
