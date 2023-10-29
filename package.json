@@ -5,7 +5,8 @@
     "main": "src/index.js",
     "type": "module",
     "scripts": {
-        "run": "node src/index.js"
+        "run": "node src/index.js",
+        "try": "node src/try.js"
     },
     "keywords": [],
     "author": "",
